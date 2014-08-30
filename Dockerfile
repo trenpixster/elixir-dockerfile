@@ -5,7 +5,8 @@
 # this stuff is worth it, you can buy me a beer in return
 # ----------------------------------------------------------------------------
 
-FROM ubuntu:14.04
+# Thanks to @hqmq_ for the heads up
+FROM phusion/baseimage:0.9.13
 MAINTAINER Nizar Venturini @trenpixster
 
 # Set the locale
@@ -38,7 +39,7 @@ RUN sudo apt-get install -y erlang
 
 # Download and Install Elixir
 WORKDIR /elixir
-RUN wget https://github.com/elixir-lang/elixir/releases/download/v0.15.1/Precompiled.zip
+RUN wget https://github.com/elixir-lang/elixir/releases/download/v1.0.0-rc1/Precompiled.zip
 RUN unzip Precompiled.zip
 RUN ln -s  /elixir/bin/elixirc /usr/local/bin/elixirc
 RUN ln -s  /elixir/bin/elixir /usr/local/bin/elixir
