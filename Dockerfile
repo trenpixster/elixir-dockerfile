@@ -64,6 +64,9 @@ RUN apt-get install -y wget
 # Install unzip
 RUN apt-get install -y unzip
 
+# Install git
+RUN apt-get install -y git
+
 # Add Erlang Solutions repo
 # See : https://www.erlang-solutions.com/downloads/download-erlang-otp
 RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list
