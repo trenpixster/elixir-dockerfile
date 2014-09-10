@@ -27,7 +27,12 @@ MAINTAINER Nizar Venturini @trenpixster
 ENV REFRESHED_AT 2014-09-02
 
 # Set correct environment variables.
-ENV HOME /root
+
+# Setting ENV HOME does not seem to work currently. HOME is unset in Docker container.
+# See bug : https://github.com/phusion/baseimage-docker/issues/119
+#ENV HOME /root
+# Workaround:
+RUN echo /root > /etc/container_environment/HOME
 
 # Regenerate SSH host keys. baseimage-docker does not contain any, so you
 # have to do that yourself. You may also comment out this instruction; the
