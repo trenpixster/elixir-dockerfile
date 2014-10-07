@@ -84,7 +84,7 @@ RUN apt-get install -y erlang=1:17.1
 
 # Download and Install Specific Version of Elixir
 WORKDIR /elixir
-RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.0.0/Precompiled.zip
+RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.0.1/Precompiled.zip
 RUN unzip Precompiled.zip
 RUN rm -f Precompiled.zip
 RUN ln -s /elixir/bin/elixirc /usr/local/bin/elixirc
