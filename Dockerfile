@@ -80,7 +80,7 @@ RUN apt-key add erlang_solutions.asc
 RUN apt-get -qq update
 
 # Download and Install Specific Version of Erlang
-RUN apt-get install -y erlang=1:17.1
+RUN apt-get install -y erlang=1:17.3.2
 
 # Download and Install Specific Version of Elixir
 WORKDIR /elixir
