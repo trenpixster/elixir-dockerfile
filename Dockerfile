@@ -61,40 +61,32 @@ WORKDIR /tmp
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Update repos
-RUN apt-get -qq update
-
-# Install wget
-RUN apt-get install -y wget
-
-# Install unzip
-RUN apt-get install -y unzip
-
-# Install git
-RUN apt-get install -y git
+RUN apt-get -qq update && apt-get install -y \
+    git \
+    unzip \
+    wget
 
 # Add Erlang Solutions repo
 # See : https://www.erlang-solutions.com/downloads/download-erlang-otp
-RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list
-RUN wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
-RUN apt-key add erlang_solutions.asc
-RUN apt-get -qq update
-
-# Download and Install Specific Version of Erlang
-RUN apt-get install -y erlang=1:17.3.2
+RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list && \
+    wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc && \
+    apt-key add erlang_solutions.asc && \
+    apt-get -qq update && \
+    apt-get install -y erlang=1:17.3.2
 
 # Download and Install Specific Version of Elixir
 WORKDIR /elixir
-RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.0.2/Precompiled.zip
-RUN unzip Precompiled.zip
-RUN rm -f Precompiled.zip
-RUN ln -s /elixir/bin/elixirc /usr/local/bin/elixirc
-RUN ln -s /elixir/bin/elixir /usr/local/bin/elixir
-RUN ln -s /elixir/bin/mix /usr/local/bin/mix
-RUN ln -s /elixir/bin/iex /usr/local/bin/iex
+RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.0.2/Precompiled.zip && \
+    unzip Precompiled.zip && \
+    rm -f Precompiled.zip && \
+    ln -s /elixir/bin/elixirc /usr/local/bin/elixirc && \
+    ln -s /elixir/bin/elixir /usr/local/bin/elixir && \
+    ln -s /elixir/bin/mix /usr/local/bin/mix && \
+    ln -s /elixir/bin/iex /usr/local/bin/iex
 
 # Install local Elixir hex and rebar
-RUN /usr/local/bin/mix local.hex --force
-RUN /usr/local/bin/mix local.rebar --force
+RUN /usr/local/bin/mix local.hex --force && \
+    /usr/local/bin/mix local.rebar --force
 
 WORKDIR /
 
