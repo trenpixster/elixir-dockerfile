@@ -61,18 +61,14 @@ WORKDIR /tmp
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Update repos
-RUN apt-get -qq update && apt-get install -y \
+RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list && \
+    apt-key adv --fetch-keys http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc && \
+    apt-get -qq update && apt-get install -y \
+    erlang=1:17.3.2 \
     git \
     unzip \
-    wget
-
-# Add Erlang Solutions repo
-# See : https://www.erlang-solutions.com/downloads/download-erlang-otp
-RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list && \
-    wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc && \
-    apt-key add erlang_solutions.asc && \
-    apt-get -qq update && \
-    apt-get install -y erlang=1:17.3.2
+    wget && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Download and Install Specific Version of Elixir
 WORKDIR /elixir
@@ -89,6 +85,3 @@ RUN /usr/local/bin/mix local.hex --force && \
     /usr/local/bin/mix local.rebar --force
 
 WORKDIR /
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
