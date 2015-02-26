@@ -24,7 +24,7 @@ MAINTAINER Nizar Venturini @trenpixster
 # is updated with the current date. It will force refresh of all
 # of the base images and things like `apt-get update` won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2015-02-12
+ENV REFRESHED_AT 2015-02-26
 
 # Set correct environment variables.
 
@@ -67,6 +67,8 @@ RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /et
     erlang=1:17.4 \
     git \
     unzip \
+    erlang-ssl \
+    build-essential \
     wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
