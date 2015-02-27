@@ -67,7 +67,6 @@ RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /et
     erlang=1:17.4 \
     git \
     unzip \
-    erlang-ssl \
     build-essential \
     wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
