@@ -85,4 +85,4 @@ RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.0.3/Preco
 RUN /usr/local/bin/mix local.hex --force && \
     /usr/local/bin/mix local.rebar --force
 
-WORKDIR /
+WORKDIR /tmp
