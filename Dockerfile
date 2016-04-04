@@ -17,7 +17,7 @@
 #  docker run --rm -t -i phusion/baseimage:<VERSION> /sbin/my_init -- bash -l
 #
 # Thanks to @hqmq_ for the heads up
-FROM phusion/baseimage:0.9.16
+FROM phusion/baseimage:0.9.18
 MAINTAINER Nizar Venturini @trenpixster
 
 # Important!  Update this no-op ENV variable when this Dockerfile
