@@ -24,7 +24,7 @@ MAINTAINER Nizar Venturini @trenpixster
 # is updated with the current date. It will force refresh of all
 # of the base images and things like `apt-get update` won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2016-06-21
+ENV REFRESHED_AT 2016-07-19
 
 # Set correct environment variables.
 
@@ -72,7 +72,7 @@ RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /et
 
 # Download and Install Specific Version of Elixir
 WORKDIR /elixir
-RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.3.1/Precompiled.zip && \
+RUN wget -q https://github.com/elixir-lang/elixir/releases/download/v1.3.2/Precompiled.zip && \
     unzip Precompiled.zip && \
     rm -f Precompiled.zip && \
     ln -s /elixir/bin/elixirc /usr/local/bin/elixirc && \
